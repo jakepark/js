@@ -1,37 +1,49 @@
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+      // $(document).ready(function(){
+      //   debugger
+      // })
+      
+      // function clickFn () {
+      //   debugger
+      // }
+      // 
+      let clickFn = () => {
+        debugger
+      }
+      
+      document.addEventListener("DOMContentLoaded", function(event){
+        // let clickFn = () => { debugger }
+        
+        // function clickFn () {
+        //   debugger
+        // }
+        
+        
+      });
+    
+    
+  </script>
 </head>
 
-<p>
-  Time left in minutes, seconds:
-</p>
+<body>
+  <H1>
+    Time left in minutes, seconds:
+  </H1>
 
-<div>
-  <label for="">
-    Minute
-    <input type="number" max="5">
-  </label>
-  <label for="">
-    Seconds
-    <input type="number" range="1-5">
-  </label>
+  <div>
+    <label for="">
+      Minute
+      <input type="number" max="5">
+    </label>
+    <label for="">
+      Seconds
+      <input type="number" range="1-5">
+    </label>
 
-  <submit onclick="clickFn()">
-    Submit
-  </submit>
-</div>
+    <input type="submit" onclick="clickFn()" value="Click">
+  </div>
+</body>
 
-<script>
-    $(document).ready(function(){
-      debugger
-    })
-    
-    document.addEventListener("DOMContentLoaded", function(event){
-      let clickFn = () => { debugger }
-      
-      
-      
-    });
-  
-  
-</script>
+
