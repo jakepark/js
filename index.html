@@ -1,48 +1,63 @@
 <head>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script>
-      // $(document).ready(function(){
-      //   debugger
-      // })
+      let totalTime;
       
-      // function clickFn () {
-      //   debugger
-      // }
-      // 
-      let clickFn = () => {
-        debugger
+      let START_TIMER = () => {
+        let minutes = parseInt(document.getElementById("input-minute").value) || 0; // prevent NaN
+        let seconds = parseInt(document.getElementById("input-second").value) || 0;
+        
+        totalTime = totalTimeInSeconds(minutes, seconds);
+        
+        countDownFn();
       }
       
-      document.addEventListener("DOMContentLoaded", function(event){
-        // let clickFn = () => { debugger }
-        
-        // function clickFn () {
-        //   debugger
-        // }
-        
-        
-      });
-    
-    
+      let totalTimeInSeconds = (mins, secs) => {
+        return mins * 60 + secs
+      }
+      
+      let timer = document.getElementById("timer");
+      
+      let countDownFn = () => {
+        window.setInterval(function(){
+          debugger
+          timer.setInnerHTML="blah"
+          
+          decrementTime()
+          
+          if (totalTime == 0){
+            clearInterval(countDownFn);
+          }
+        }, 1000)
+      }
+      
+      let decrementTime = () => {
+        totalTime--;
+      }
   </script>
 </head>
 
 <body>
-  <H1>
-    Time left in minutes, seconds:
-  </H1>
 
-  <div>
+  <div class="countdown">
+    <h1>
+      Time left in minutes, seconds:
+    </h1>
+    <span id="timer">
+      0
+    </span>
+  </div>
+
+  <div class="user-input">
     <label for="">
       Minute
-      <input type="number" max="5">
+      <input type="number" max="5" id="input-minute">
     </label>
     <label for="">
       Seconds
-      <input type="number" range="1-5">
+      <input type="number" range="1-5" id="input-second">
     </label>
 
-    <input type="submit" onclick="clickFn()" value="Click">
+    <input type="submit" onclick="START_TIMER()" value="Click">
   </div>
 </body>
 
