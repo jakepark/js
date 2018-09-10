@@ -14,17 +14,28 @@
       let totalTimeInSeconds = (mins, secs) => {
         return mins * 60 + secs
       }
+
+      // want to declare this var only once, but the countDownFn context is diffeent
+      // let timer = document.getElementById("timer");
       
-      let timer = document.getElementById("timer");
+      let displayTime = () => {
+        let mins = Math.round(totalTime / 60)
+        let secs = totalTime % 60
+        
+        return { mins: mins, secs: secs }
+      }
       
       let countDownFn = () => {
         window.setInterval(function(){
-          debugger
-          timer.setInnerHTML="blah"
+          let timerMin = document.getElementById("timer-mins");
+          let timerSec = document.getElementById("timer-secs");
+          
+          timerMin.innerHTML=displayTime().mins
+          timerSec.innerHTML=displayTime().secs
           
           decrementTime()
           
-          if (totalTime == 0){
+          if (totalTime <= 0){
             clearInterval(countDownFn);
           }
         }, 1000)
@@ -40,14 +51,26 @@
 
   <div class="countdown">
     <h1>
-      Time left in minutes, seconds:
+      Time left:
     </h1>
-    <span id="timer">
-      0
-    </span>
+    <div class="">
+      <span>
+        Minutes:
+      </span>
+      <span id="timer-mins">
+        0
+      </span>
+      <span>
+        Seconds:
+      </span>
+      <span id="timer-secs">
+        0
+      </span>
+    </div>
   </div>
 
   <div class="user-input">
+    <h1>Input Time:</h1>
     <label for="">
       Minute
       <input type="number" max="5" id="input-minute">
