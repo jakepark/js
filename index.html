@@ -2,7 +2,13 @@
   <script>
       let totalTime;
       
+      let RESET_TIMER = () => {
+        
+      }
+      
       let START_TIMER = () => {
+        RESET_TIMER() 
+        
         let minutes = parseInt(document.getElementById("input-minute").value) || 0; // prevent NaN
         let seconds = parseInt(document.getElementById("input-second").value) || 0;
         
@@ -19,31 +25,36 @@
       // let timer = document.getElementById("timer");
       
       let displayTime = () => {
-        let mins = Math.round(totalTime / 60)
+        let mins = Math.floor(totalTime / 60)
         let secs = totalTime % 60
         
         return { mins: mins, secs: secs }
       }
       
       let countDownFn = () => {
-        window.setInterval(function(){
+        let timer = () => {
           let timerMin = document.getElementById("timer-mins");
           let timerSec = document.getElementById("timer-secs");
           
-          timerMin.innerHTML=displayTime().mins
-          timerSec.innerHTML=displayTime().secs
-          
-          decrementTime()
+        // add test for 1 minute 1 second
+          timerMin.innerHTML = displayTime().mins
+          timerSec.innerHTML = displayTime().secs
           
           if (totalTime <= 0){
-            clearInterval(countDownFn);
+            clearInterval(interval);
           }
-        }, 1000)
+          decrementTime()
+        }
+        
+        let interval = setInterval(timer, 1000)
       }
+      
       
       let decrementTime = () => {
         totalTime--;
       }
+      // todo: prevent more setintervals adding to page upon multiple clicks
+      // todo: form validation
   </script>
 </head>
 
@@ -51,18 +62,13 @@
 
   <div class="countdown">
     <h1>
-      Time left:
+      Time left (MM:SS):
     </h1>
     <div class="">
-      <span>
-        Minutes:
-      </span>
       <span id="timer-mins">
         0
       </span>
-      <span>
-        Seconds:
-      </span>
+      :
       <span id="timer-secs">
         0
       </span>
@@ -73,11 +79,11 @@
     <h1>Input Time:</h1>
     <label for="">
       Minute
-      <input type="number" max="5" id="input-minute">
+      <input type="number" max="15" id="input-minute">
     </label>
     <label for="">
       Seconds
-      <input type="number" range="1-5" id="input-second">
+      <input type="number" range="1-60" id="input-second">
     </label>
 
     <input type="submit" onclick="START_TIMER()" value="Click">
