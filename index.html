@@ -34,24 +34,24 @@
         return { mins: mins, secs: secs }
       }
       
-      const countDownFn = () => {
-        const timer = () => {
-          const timerMin = document.getElementById("timer-mins");
-          const timerSec = document.getElementById("timer-secs");
-          
-        // add test for 1 minute 1 second
-          timerMin.innerHTML = displayTime().mins
-          timerSec.innerHTML = displayTime().secs
-          
-          if (totalTime <= 0){
-            clearInterval(intervalTimer);
-          }
-          decrementTime()
-        }
+      
+      const timer = () => {
+        const timerMin = document.getElementById("timer-mins");
+        const timerSec = document.getElementById("timer-secs");
         
-        intervalTimer = setInterval(timer, 1000)
+        // add test for 1 minute 1 second
+        timerMin.innerHTML = displayTime().mins
+        timerSec.innerHTML = displayTime().secs
+        
+        if (totalTime <= 0){
+          clearInterval(intervalTimer);
+        }
+        decrementTime()
       }
       
+      const countDownFn = () => {
+        intervalTimer = setInterval(timer, 1000)
+      }
       
       const decrementTime = () => {
         totalTime--;
