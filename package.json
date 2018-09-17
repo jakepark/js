@@ -1,5 +1,8 @@
 {
   "scripts": {
     "test": "jest"
+  },
+  "dependencies": {
+    "eslint": "^5.6.0"
   }
 }

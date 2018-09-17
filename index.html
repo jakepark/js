@@ -1,9 +1,12 @@
 <head>
   <script>
       let totalTime;
+      let intervalTimer
       
       let RESET_TIMER = () => {
-        
+        if (intervalTimer !== undefined){
+          clearInterval(intervalTimer)
+        }
       }
       
       let START_TIMER = () => {
@@ -41,12 +44,12 @@
           timerSec.innerHTML = displayTime().secs
           
           if (totalTime <= 0){
-            clearInterval(interval);
+            clearInterval(intervalTimer);
           }
           decrementTime()
         }
         
-        let interval = setInterval(timer, 1000)
+        intervalTimer = setInterval(timer, 1000)
       }
       
       
